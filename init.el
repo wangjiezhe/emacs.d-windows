@@ -191,7 +191,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (sly sly-company sly-quicklisp company-quickhelp company company-math magit counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number use-package))))
+    (dired+ sly sly-company sly-quicklisp company-quickhelp company company-math magit counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
