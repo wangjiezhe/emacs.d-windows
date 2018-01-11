@@ -27,7 +27,7 @@
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
-                      "Source Han Sans CN")))
+                      (font-spec :family "Microsoft Yahei"))))
 
 ;;; show directory name when open files with same names
 (require 'uniquify)
