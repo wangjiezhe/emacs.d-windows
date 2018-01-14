@@ -95,7 +95,7 @@
   (add-hook 'scheme-mode-hook #'enable-paredit-mode)
   (add-hook 'inferior-scheme-mode-hook #'enable-paredit-mode))
 
-(use-package paredit-everywhere-mode
+(use-package paredit-everywhere
   :init
   (add-hook 'prog-mode-hook 'paredit-everywhere-mode))
 
@@ -191,7 +191,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dired+ sly sly-company sly-quicklisp company-quickhelp company company-math magit counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number use-package))))
+    (company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
