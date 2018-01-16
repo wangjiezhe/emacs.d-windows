@@ -77,11 +77,13 @@
   :load-path "site-lisp")
 
 (use-package window-number
+  :ensure t
   :config
   (window-number-mode 1)
   :bind (("C-x o". window-number-switch)))
 
 (use-package paredit
+  :ensure t
   :init
   (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
@@ -96,20 +98,24 @@
   (add-hook 'inferior-scheme-mode-hook #'enable-paredit-mode))
 
 (use-package paredit-everywhere
+  :ensure t
   :init
   (add-hook 'prog-mode-hook 'paredit-everywhere-mode))
 
 (use-package paredit-menu
+  :ensure t
   :after paredit
   :config
   (define-key paredit-mode-map (kbd "M-[") 'paredit-backward)
   (define-key paredit-mode-map (kbd "M-]") 'paredit-forward))
 
 (use-package rainbow-delimiters
+  :ensure t
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package counsel
+  :ensure t
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
@@ -137,6 +143,7 @@
 	 ("C-c C-r". ivy-resume)))
 
 (use-package magit
+  :ensure t
   :commands (magit-after-save-refresh-status magit-process-file)
   :bind (("C-x g". magit-status)
 	 ("C-x M-g". magit-dispatch-popup))
@@ -146,6 +153,7 @@
   (setq magit-completing-read-function 'ivy-completing-read))
 
 (use-package company
+  :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :config
@@ -167,6 +175,7 @@
   (add-to-list 'company-backends '(sly-company company-files)))
 
 (use-package sly
+  :ensure t
   :init
   ;;; inferior lisp
   (setq inferior-lisp-program "sbcl --no-linedit")
@@ -182,7 +191,13 @@
 	'((sbcl ("sbcl"))
 	  (ecl ("ecl"))
 	  (clisp ("clisp"))))
-)
+  )
+
+(use-package dired+
+  :ensure t
+  :init
+  (setq diredp-hide-details-initially-flag nil)
+  (setq dired-listing-switches "-alF"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -191,7 +206,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
+    (use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
