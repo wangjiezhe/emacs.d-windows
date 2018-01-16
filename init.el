@@ -9,9 +9,11 @@
 (define-coding-system-alias 'utf8 'utf-8)
 (define-coding-system-alias 'UTF8 'utf-8)
 
-(require 'package)
-(add-to-list 'package-archives '("mepla". "http://melpa.org/packages/"))
-
+(eval-when-compile
+  ;; (add-to-list 'package-archives '("mepla". "http://melpa.org/packages/"))
+  (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+			   ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+  (require 'package))
 ;; (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 
 ;;; custom theme
@@ -70,6 +72,7 @@
 (global-set-key (kbd "M-n") 'next-logical-line)
 (global-set-key (kbd "M-p") 'previous-logical-line)
 
+;;; remove more than one blank line
 (defun single-lines-only ()
   "replace multiple blank lines with a single one"
   (interactive)
@@ -77,6 +80,23 @@
   (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
     (replace-match "\n")
     (forward-char 1)))
+
+;;; recentf-mode
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 30)
+(recentf-mode 1)
+(global-set-key (kbd "C-c r") 'recentf-open-files)
+
+;;; make the tab do complete
+(setq-default tab-always-indent 'complete)
+
+;;; use hippie expand instead of dbbrev-expand
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;;; use zap-up-to-char
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR." t)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 
 ;;; highlight line numbers
@@ -202,8 +222,7 @@
   (setq sly-lisp-implementations
 	'((sbcl ("sbcl"))
 	  (ecl ("ecl"))
-	  (clisp ("clisp"))))
-  )
+	  (clisp ("clisp")))))
 
 (use-package dired+
   :ensure t
@@ -218,7 +237,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
+    (recentf-ext use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
