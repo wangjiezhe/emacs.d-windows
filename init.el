@@ -66,6 +66,18 @@
 ;;; set fill-column
 (setq fill-column 80)
 
+;;; move according to logical line
+(global-set-key (kbd "M-n") 'next-logical-line)
+(global-set-key (kbd "M-p") 'previous-logical-line)
+
+(defun single-lines-only ()
+  "replace multiple blank lines with a single one"
+  (interactive)
+  (goto-char (point-min))
+  (while (re-search-forward "\\(^\\s-*$\\)\n" nil t)
+    (replace-match "\n")
+    (forward-char 1)))
+
 
 ;;; highlight line numbers
 ;; (use-package hlinum
