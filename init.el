@@ -226,6 +226,11 @@
   (setq diredp-hide-details-initially-flag nil)
   (setq dired-listing-switches "-alF"))
 
+(use-package vlf
+  :ensure t
+  :requires vlf-setup
+  )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -233,7 +238,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (recentf-ext use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
+    (vlf vimrc-mode recentf-ext use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
