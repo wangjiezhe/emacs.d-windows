@@ -116,23 +116,20 @@
 
 (use-package paredit
   :ensure t
-  :init
-  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-  (add-hook 'ielm-mode-hook #'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook #'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook #'enable-paredit-mode)
-  (add-hook 'racket-mode-hook #'enable-paredit-mode)
-  (add-hook 'racket-repl-mode-hook #'enable-paredit-mode)
-  (add-hook 'sly-mode-hook #'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook #'enable-paredit-mode)
-  (add-hook 'inferior-scheme-mode-hook #'enable-paredit-mode))
+  :hook ((emacs-lisp-mode
+	  eval-expression-minibuffer-setup
+	  ielm-mode
+	  lisp-mode
+	  lisp-interaction-mode
+	  scheme-mode
+	  racket-mode
+	  racket-repl-mode
+	  sly-mode
+	  inferior-scheme-mode) . enable-paredit-mode))
 
 (use-package paredit-everywhere
   :ensure t
-  :init
-  (add-hook 'prog-mode-hook 'paredit-everywhere-mode))
+  :hook (prog-mode . paredit-everywhere-mode))
 
 (use-package paredit-menu
   :ensure t
@@ -143,8 +140,7 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :init
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package counsel
   :ensure t
@@ -176,18 +172,18 @@
 
 (use-package magit
   :ensure t
-  :commands (magit-after-save-refresh-status magit-process-file)
+  ;; :commands (magit-after-save-refresh-status magit-process-file)
   :bind (("C-x g". magit-status)
 	 ("C-x M-g". magit-dispatch-popup))
+  :hook (after-save . magit-after-save-refresh-status)
   :config
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status)
   ;; use ivy
   (setq magit-completing-read-function 'ivy-completing-read))
 
 (use-package company
   :ensure t
+  :hook (after-init . global-company-mode)
   :init
-  (add-hook 'after-init-hook 'global-company-mode)
   :config
   ;; activate quickhelp
   (company-quickhelp-mode 1)
@@ -208,10 +204,10 @@
 
 (use-package sly
   :ensure t
+  :hook (sly-mode . sly-company-mode)
   :init
   ;;; inferior lisp
   (setq inferior-lisp-program "sbcl --no-linedit")
-  (add-hook 'sly-mode-hook 'sly-company-mode)
   :config
   ;;; generalized documentation lookup
   (define-key sly-prefix-map (kbd "M-h") 'sly-documentation-lookup)
