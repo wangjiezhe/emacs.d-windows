@@ -142,6 +142,9 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package smex
+  :ensure t)
+
 (use-package counsel
   :ensure t
   :config
@@ -216,9 +219,9 @@
     '(define-key sly-mrepl-mode-map (kbd "C-c C-k") 'sly-mrepl-clear-recent-output))
   ;;; multiple lisps
   (setq sly-lisp-implementations
-	'((sbcl ("sbcl"))
-	  (ecl ("ecl"))
-	  (clisp ("clisp")))))
+	'((sbcl ("sbcl.exe"))
+	  (ecl ("ecl.exe"))
+	  (clisp ("clisp.exe")))))
 
 (use-package dired+
   :ensure t
@@ -238,7 +241,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (vlf vimrc-mode recentf-ext use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
+    (smex vlf vimrc-mode recentf-ext use-package-chords company-math ivy magit magit-popup sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
