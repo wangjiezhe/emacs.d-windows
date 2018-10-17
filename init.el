@@ -52,7 +52,8 @@
 (defalias 'list-buffers 'ibuffer)
 
 ;;; always show line numbers
-(global-linum-mode 1)
+;; (global-linum-mode 1)
+(add-hook 'prog-mode-hook 'linum-mode)
 
 ;;; always show line and column number
 (line-number-mode 1)
