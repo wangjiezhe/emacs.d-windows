@@ -39,8 +39,14 @@
 (setq frame-title-format "emacs@%b")
 
 
-;;; stop creating those backup~ files
+;;; stop creating backup~ files
 (setq make-backup-files nil)
+
+;;; stop creating #autosave# files
+(setq auto-save-default nil)
+
+;;; stop creating .#lock file links
+(setq create-lockfiles nil)
 
 ;;; make ibuffer default
 (defalias 'list-buffers 'ibuffer)
