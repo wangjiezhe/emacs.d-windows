@@ -187,7 +187,8 @@
   :hook (after-save . magit-after-save-refresh-status)
   :config
   ;; use ivy
-  (setq magit-completing-read-function 'ivy-completing-read))
+  (setq magit-completing-read-function 'ivy-completing-read)
+  (setq split-width-threshold 80))
 
 (use-package company
   :ensure t
