@@ -194,7 +194,6 @@
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode)
-  :init
   :config
   ;; activate quickhelp
   (company-quickhelp-mode 1)
@@ -212,6 +211,13 @@
   (company-quickhelp-mode 1)
   ;;; custom backends
   (add-to-list 'company-backends '(sly-company company-files)))
+
+(use-package org
+  :ensure t
+  :config
+  (defun my-org-mode-hook ()
+    (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+  (add-hook 'org-mode-hook #'my-org-mode-hook))
 
 (use-package sly
   :ensure t
@@ -250,7 +256,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (markdown-mode+ smex vlf vimrc-mode recentf-ext use-package-chords company-math magit sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
+    (hexo ox-gfm org markdown-mode+ smex vlf vimrc-mode recentf-ext use-package-chords company-math magit sly use-package dired+ sly-company sly-quicklisp company-quickhelp counsel rainbow-delimiters paredit-everywhere paredit-menu paredit window-number))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
